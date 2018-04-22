@@ -1,4 +1,4 @@
-import atm from '@/server/models/atm';
+import atm from '@@/models/atm';
 
 describe('atm', () => {
   describe('handles valid input correctly', () => {
@@ -15,7 +15,7 @@ describe('atm', () => {
 
     it('should return an array of minimum possible length', () => {
       expect(
-        () => validResult;
+        () => validResult
       )
         .to.equal('array');
     });

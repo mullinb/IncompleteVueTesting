@@ -8,13 +8,13 @@ var billSums = function(totalStr) {
     var numberOfNotes = [0, 0, 0, 0];
     var listOfNotes = [[], [], [], []]
 
-    totalInt = () => {
-      try {
-        return bigInt(totalStr);
-      } catch {
-        throw new Error("InvalidArgumentException")
-      }
-    };
+    if (totalStr === null) {
+      return []
+    }
+
+    let totalInt = bigInt(totalStr);
+
+    console.log('totalInt', totalInt);
 
     if (totalInt.isNegative()) {
       throw new Error("InvalidArgumentException")
@@ -23,7 +23,7 @@ var billSums = function(totalStr) {
     recurseThroughNotes(0, totalInt);
 
     for (var i = 0; i<numberOfNotes.length; i++) {
-      listOfNotes[i] = new Array(numberOfNotes[i]).fill(notes[i], 0, numberOfNotes[i]);
+      listOfNotes[i].fill(new Array(numberOfNotes[i]), notes[i]);
     }
     return listOfNotes.reduce((acc, val) => acc.concat(val), []);
 
