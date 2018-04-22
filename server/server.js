@@ -23,7 +23,23 @@ app.get('*', (req, res) => {
     .pipe(res);
 });
 
-console.log(atmBehavior("-111111111111111111111111111111111111111180"));
+var thisData = atmBehavior("101090");
+
+console.log(thisData);
+
+var count50 = thisData.reduce(function(n, val) {
+    return n + (val === 50);
+}, 0);
+
+var count20 = thisData.reduce(function(n, val) {
+    return n + (val === 20);
+}, 0);
+
+var count10 = thisData.reduce(function(n, val) {
+    return n + (val === 10);
+}, 0);
+
+console.log(count50, count20, count10);
 
 
 app.listen(8080, console.log("server runs"));

@@ -1,44 +1,59 @@
-import atm from '../../server/models/atm';
+import atm from '@/server/models/atm';
 
 describe('atm', () => {
-  it('should return an array of values when passed a currency value', () => {
+  describe('handles valid input correctly', () => {
+    let validResult;
 
-      // it('should return an array of minimum possible length', {
-      //
-      // })
-      //
-      // it('should return an array with values in decreasing order', {
-      //
-      // })
+    beforeEach(() => {
+      validResult = atm('1080');
+    });
 
-  })
+    it('should return an array of values when passed a valid integer string', () => {
+      expect(typeof (validResult))
+        .to.equal('array');
+    });
 
-  it('should throw an InvalidArgumentException when passed a negative currency value', () => {
+    it('should return an array of minimum possible length', () => {
+      expect(
+        () => validResult;
+      )
+        .to.equal('array');
+    });
 
-  })
+    it('should return an array with values in decreasing order', () => {
+      expect(
+        validResult
+      )
+        .to.equal('array');
+    });
+  });
 
-  it('should throw an InvalidArgumentException when passed an argument which is not a currency value', () => {
+  describe('handles special valid input cases correctly', () => {
+    it('should not timeout on a very large withdrawal requests', () => {
+      expect(typeof (atm('1080010100124194012043124091240394543958032459302453284953240')))
+        .to.equal('array');
+    });
 
-  })
+    it('should return an empty array when passed a NULL value', () => {
+      expect(typeof (atm(null)))
+        .to.equal([]);
+    });
+  });
 
-  it('should throw a NoteUnavailableException when passed a value not divisible by some combination of available notes', () => {
+  describe('handles invalid input cases correctly', () => {
+    it('should throw an InvalidArgumentException when passed a negative integer string', () => {
+      expect((atm('-1080')))
+        .to.throw(Error, "InvalidArgumentException");
+    });
 
-  })
+    it('should throw an InvalidArgumentException when passed an argument which is not an integer string', () => {
+      expect((atm('-10a80')))
+      .to.throw(Error, "InvalidArgumentException");
+    });
 
-  it('should not timeout on a very large withdrawal requests', () => {
-
-  })
-
-  it('should return an empty array when passed a NULL value', () => {
-
-  })
-
-  // it('should return an array of minimum possible length', {
-  //
-  // })
-  //
-  // it('should return an array with values in decreasing order', {
-  //
-  // })
-
+    it('should throw a NoteUnavailableException when passed an integer string not divisible by some combination of available notes', () => {
+      expect((atm('1085')))
+        .to.throw(Error, "NoteUnavailableException");
+    });
+  });
 });
