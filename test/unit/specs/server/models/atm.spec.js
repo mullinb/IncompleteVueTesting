@@ -1,4 +1,4 @@
-import atm from '@@/models/atm';
+require atm from '@@/models/atm';
 
 describe('atm', () => {
   describe('handles valid input correctly', () => {

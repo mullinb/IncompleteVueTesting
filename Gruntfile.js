@@ -4,8 +4,8 @@ module.exports = function (grunt) {
 
   grunt.initConfig({
     simplemocha: {
-      backend: {
-        src: ['test/unit/specs/server/models/atm.spec']
+      all: {
+        src: ['test/unit/specs/server/models/atm.spec.js']
       }
     },
     karma: {
