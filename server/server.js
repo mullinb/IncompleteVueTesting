@@ -2,22 +2,19 @@ const fs = require('fs');
 const express = require('express');
 const { createBundleRenderer } = require('vue-server-renderer');
 
+const atmBehavior = require('./models/atm')
+
 const bundleRenderer = createBundleRenderer(
-  // Load the SSR bundle with require.
-  require('./dist/vue-ssr-bundle.json'),
+  require('../dist/vue-ssr-bundle.json'),
   {
-    // Yes, I know, readFileSync is bad practice. It's just shorter to read here.
     template: fs.readFileSync('./index.html', 'utf-8')
   }
 );
 
-// Create the express app.
 const app = express();
 
-// Serve static assets from ./dist on the /dist route.
 app.use('/dist', express.static('dist'));
 
-// Render all other routes with the bundleRenderer.
 app.get('*', (req, res) => {
   bundleRenderer
     // Renders directly to the response stream.
@@ -26,5 +23,7 @@ app.get('*', (req, res) => {
     .pipe(res);
 });
 
-// Bind the app to this port.
+console.log(atmBehavior("-111111111111111111111111111111111111111180"));
+
+
 app.listen(8080, console.log("server runs"));
